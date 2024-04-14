@@ -9,8 +9,8 @@ fi
 #domains=(dresspal.de)
 #domains=(www.dresspal.de)
 #domains=(swiftlycoastalcode.de)
-domains=(www.swiftlycoastalcode.de)
-#domains=(dresspal.scc-backend.de)
+#domains=(www.swiftlycoastalcode.de)
+domains=(dresspal.scc-backend.de)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="swiftlycoastalcode@gmx.de" # Adding a valid address is strongly recommended
