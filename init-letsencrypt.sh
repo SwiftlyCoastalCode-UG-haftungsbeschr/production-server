@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker compose)" ]; then
   exit 1
 fi
 
-domains=(www.dresspal.de)
+domains=(swiftlycoastalcode.de www.swiftlycoastalcode.de dresspal.de www.dresspal.de)
 #domains=(dresspal.de www.dresspal.de swiftlycoastalcode.de www.swiftlycoastalcode.de dresspal.scc-backend.de)
 rsa_key_size=4096
 data_path="./data/certbot"
