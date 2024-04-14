@@ -45,7 +45,7 @@ services:
       - ./src/main/resources/keys:/app/keys
 
   # DressPal
-  backend:
+  dresspal-backend:
     image: itspetersen/dresspal-backend
     ports:
       - "8080:8080"
@@ -63,7 +63,7 @@ services:
     links:
       - "db"
 
-  frontend:
+  dresspal-frontend:
     image: itspetersen/dresspal-frontend
     ports:
       - "5173:5173"
