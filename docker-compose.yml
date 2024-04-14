@@ -34,7 +34,7 @@ services:
   db:
     image: 'postgres:13.1-alpine'
     environment:
-      - POSTGRES_USER=/run/secrets/postgres_username
+      - POSTGRES_USER=/run/secrets/postgres_usernam
       - POSTGRES_PASSWORD=/run/secrets/postgres_password
       - POSTGRES_DB=dresspal
     ports:
