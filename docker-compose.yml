@@ -1,12 +1,4 @@
 version: "3.9"
-secrets:
-  postgres_username:
-    file: ../postgres_username.txt
-  postgres_password:
-    file: ../postgres_password.txt
-  jasypt_password:
-    file: ../jasypt_password.txt
-
 services:
   scc-website:
     image: swiftlycoastalcode/scc-website
@@ -63,11 +55,11 @@ services:
     depends_on:
       - "db"
     environment:
-      - SPRING_DATASOURCE_URL=/run/secrets/postgres_username
-      - SPRING_DATASOURCE_USERNAME=/run/secrets/postgres_username
-      - SPRING_DATASOURCE_PASSWORD=/run/secrets/postgres_password
-      - SPRING_PROFILES_ACTIVE=prod
-      - JASYPT_ENCRYPTOR_PASSWORD=/run/secrets/jasypt_password
+      SPRING_DATASOURCE_URL: /run/secrets/postgres_username
+      SPRING_DATASOURCE_USERNAME: /run/secrets/postgres_username
+      SPRING_DATASOURCE_PASSWORD: /run/secrets/postgres_password
+      SPRING_PROFILES_ACTIVE: prod
+      JASYPT_ENCRYPTOR_PASSWORD: /run/secrets/jasypt_password
     volumes:
       - ./data/logs:/opt/app/logs
     links:
@@ -93,6 +85,13 @@ services:
       - "db"
     ports:
       - "8081:8080"
+secrets:
+  postgres_username:
+    file: ../postgres_username.txt
+  postgres_password:
+    file: ../postgres_password.txt
+  jasypt_password:
+    file: ../jasypt_password.txt
 
 volumes:
   dress_pal:
