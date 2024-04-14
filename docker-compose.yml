@@ -1,4 +1,12 @@
 version: "3.9"
+secrets:
+  postgres_username:
+    file: postgres_username.txt
+  postgres_password:
+    file: postgres_password.txt
+  jasypt_password:
+    file: jasypt_password.txt
+
 services:
   scc-website:
     image: swiftlycoastalcode/scc-website
@@ -30,3 +38,49 @@ services:
       - ./data/certbot/www:/var/www/certbot
 
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  db:
+    image: 'postgres:13.1-alpine'
+    environment:
+      - POSTGRES_USER=/run/secrets/postgres_username
+      - POSTGRES_PASSWORD=/run/secrets/postgres_password
+      - POSTGRES_DB=dresspal
+    ports:
+      - "5432:5432"
+    volumes:
+      - dress_pal:/var/lib/postgresql/data
+      - ./src/main/resources/keys:/app/keys
+    secrets:
+      - postgres_username
+      - postgres_password
+  # DressPal
+  backend:
+    image: itspetersen/dresspal-backend
+    ports:
+      - "8080:8080"
+      - "8050:8050"
+    depends_on:
+      - "db"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/dresspal
+      SPRING_DATASOURCE_USERNAME: /run/secrets/postgres_username
+      SPRING_DATASOURCE_PASSWORD: /run/secrets/postgres_password
+      SPRING_PROFILES_ACTIVE: prod
+      JASYPT_ENCRYPTOR_PASSWORD: /run/secrets/jasypt_password
+    volumes:
+      - ./data/logs:/opt/app/logs
+    links:
+      - "db"
+    secrets:
+      - postgres_username
+      - postgres_password
+      - jasypt_password
+
+  frontend:
+    image: itspetersen/dresspal-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - "backend"
+    environment:
+      NODE_ENV: production
