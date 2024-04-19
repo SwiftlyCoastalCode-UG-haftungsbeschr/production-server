@@ -49,6 +49,7 @@ services:
     image: itspetersen/dresspal-backend
     ports:
       - "8080:8080"
+      - "8050:8050"
     depends_on:
       - "db"
     environment:
