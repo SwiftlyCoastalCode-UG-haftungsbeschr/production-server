@@ -32,7 +32,7 @@ services:
 
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
-  db:
+  dresspal-db:
     image: 'postgres:13.1-alpine'
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
@@ -51,9 +51,9 @@ services:
       - "8080:8080"
       - "8050:8050"
     depends_on:
-      - "db"
+      - "dresspal-db"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/dresspal
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dresspal-db:5432/dresspal
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       SPRING_PROFILES_ACTIVE: prod
@@ -61,7 +61,7 @@ services:
     volumes:
       - ./data/logs:/opt/app/logs
     links:
-      - "db"
+      - "dresspal-db"
 
   dresspal-frontend:
     image: itspetersen/dresspal-frontend
@@ -72,11 +72,11 @@ services:
     environment:
       NODE_ENV: production
 
-  adminer:
+  dresspal-adminer:
     image: adminer
     restart: always
     depends_on:
-      - "db"
+      - "dresspal-db"
     ports:
       - "8081:8080"
 
