@@ -42,7 +42,6 @@ services:
       - "5432:5432"
     volumes:
       - dress_pal:/var/lib/postgresql/data
-      - ./src/main/resources/keys:/app/keys
 
   # DressPal
   dresspal-backend:
