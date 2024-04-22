@@ -1,26 +1,18 @@
 {
-   "applinks": {
-      "details": [
-           {
-             "appIDs": [ "9F7J54XJAJ.de.petersen.nico.DressPal" ],
-             "components": [
-             {
-                   "/": "*"
-             },
-               {
-                  "#": "no_universal_links",
-                  "exclude": true,
-                  "comment": "Matches any URL with a fragment that equals no_universal_links and instructs the system not to open it as a universal link."
-               },
-               {
-                  "/": "/user/*/*/new-password",
-                  "comment": "Matches any URL with a path that starts with /user/*/*/new-password"
-               }
-             ]
-           }
-       ]
-   },
-   "webcredentials": {
-      "apps": [ "9F7J54XJAJ.de.petersen.nico.DressPal" ]
-   }
+  "applinks": {
+    "details": [
+      {
+        "appID": "9F7J54XJAJ.de.petersen.nico.DressPal",
+        "paths": [
+          "/user/*/*/new-password",
+          "/user/token"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "9F7J54XJAJ.de.petersen.nico.DressPal"
+    ]
+  }
 }
