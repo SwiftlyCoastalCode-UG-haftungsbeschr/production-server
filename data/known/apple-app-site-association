@@ -4,6 +4,7 @@
       {
         "appID": "9F7J54XJAJ.de.petersen.nico.DressPal",
         "paths": [
+          "/",
           "/user/*/*/new-password",
           "/user/token"
         ]
