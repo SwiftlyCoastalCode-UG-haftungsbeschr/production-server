@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appID": "9F7J54XJAJ.de.petersen.nico.DressPal",
+        "appID": "L7N9396MHZ.de.scc.dresspal",
         "paths": [
           "/",
           "/user/*/*/new-password",
@@ -13,7 +13,7 @@
   },
   "webcredentials": {
     "apps": [
-      "9F7J54XJAJ.de.petersen.nico.DressPal"
+      "L7N9396MHZ.de.scc.dresspal"
     ]
   }
 }
